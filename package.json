@@ -1,0 +1,27 @@
+{
+  "name": "snippets-registry",
+  "version": "0.0.1",
+  "description": "JavaScript module for storing and retrieving Emmet snippets",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmetio/snippets-registry.git"
+  },
+  "keywords": [],
+  "author": "Sergey Chikuyonok <serge.che@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emmetio/snippets-registry/issues"
+  },
+  "homepage": "https://github.com/emmetio/snippets-registry#readme",
+  "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+    "babel-register": "^6.18.0",
+    "mocha": "^3.1.2",
+    "rollup": "^0.36.3",
+    "rollup-watch": "^2.5.0"
+  }
+}
