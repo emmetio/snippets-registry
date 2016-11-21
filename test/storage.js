@@ -61,4 +61,19 @@ describe('Storage', () => {
         assert.equal(storage.get('a2').key, 'a2');
         assert.equal(storage.get('a2').value, 'baz');
     });
+
+    it('enable/disable', () => {
+        const storage = new SnippetsStorage({'foo': 'bar'});
+
+        assert.equal(storage.disabled, false);
+        assert(storage.get('foo'));
+
+        storage.disable();
+        assert.equal(storage.disabled, true);
+        assert.equal(storage.get('foo'), undefined);
+
+        storage.enable();
+        assert.equal(storage.disabled, false);
+        assert(storage.get('foo'));
+    });
 });
