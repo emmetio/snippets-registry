@@ -1,10 +1,16 @@
 {
-  "name": "snippets-registry",
+  "name": "@emmetio/snippets-registry",
   "version": "0.0.1",
   "description": "JavaScript module for storing and retrieving Emmet snippets",
-  "main": "index.js",
+  "main": "dist/snippets-registry.cjs.js",
+  "jsnext:main": "dist/snippets-registry.es.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "rollup -o dist/snippets-registry.cjs.js -f cjs ./index.js",
+    "build:es": "rollup -o dist/snippets-registry.es.js -f es ./index.js",
+    "prepublish": "npm run build",
+    "watch": "rollup -w -o dist/snippets-registry.cjs.js -f cjs ./index.js"
   },
   "repository": {
     "type": "git",
