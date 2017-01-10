@@ -7,10 +7,9 @@
   "scripts": {
     "test": "mocha",
     "build": "npm run build:cjs && npm run build:es",
-    "build:cjs": "rollup -o dist/snippets-registry.cjs.js -f cjs ./index.js",
-    "build:es": "rollup -o dist/snippets-registry.es.js -f es ./index.js",
-    "prepublish": "npm run build",
-    "watch": "rollup -w -o dist/snippets-registry.cjs.js -f cjs ./index.js"
+    "build:cjs": "rollup -c -o dist/snippets-registry.cjs.js -f cjs ./index.js",
+    "build:es": "rollup -c -o dist/snippets-registry.es.js -f es ./index.js",
+    "prepublish": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,7 +26,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
     "babel-register": "^6.18.0",
     "mocha": "^3.1.2",
-    "rollup": "^0.36.3",
-    "rollup-watch": "^2.5.0"
+    "rollup": "^0.41.1"
   }
 }

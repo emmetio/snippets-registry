@@ -7,8 +7,22 @@ export const GLOBAL  = 0;
 export const USER    = 10;
 export const PROJECT = 20;
 
-export default function() {
-    return new SnippetsRegistry();
+/**
+ * Creates snippets registry, filled with given `data`
+ * @param {Object|Array} data Registry snippets. If array is given, adds items
+ * from array in order of precedence, registers global snippets otherwise
+ * @return {SnippetsRegistry}
+ */
+export default function(data) {
+    const registry = new SnippetsRegistry();
+
+    if (Array.isArray(data)) {
+        data.forEach((snippets, level) => registry.add(level, snippets));
+    } else if (typeof data === 'object') {
+        registry.add(data);
+    }
+
+    return registry;
 };
 
 /**
