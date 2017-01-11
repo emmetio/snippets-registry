@@ -2,37 +2,25 @@
 
 import SnippetsStorage from './lib/storage';
 
-// Some predefined levels. Authors can use any other number as well
-export const GLOBAL  = 0;
-export const USER    = 10;
-export const PROJECT = 20;
-
-/**
- * Creates snippets registry, filled with given `data`
- * @param {Object|Array} data Registry snippets. If array is given, adds items
- * from array in order of precedence, registers global snippets otherwise
- * @return {SnippetsRegistry}
- */
-export default function(data) {
-    const registry = new SnippetsRegistry();
-
-    if (Array.isArray(data)) {
-        data.forEach((snippets, level) => registry.add(level, snippets));
-    } else if (typeof data === 'object') {
-        registry.add(data);
-    }
-
-    return registry;
-};
-
 /**
  * A snippets registry. Contains snippets, separated by store and sorted by
  * priority: a store with higher priority takes precedence when resolving snippet
  * for given key
  */
-export class SnippetsRegistry {
-    constructor() {
+export default class SnippetsRegistry {
+    /**
+     * Creates snippets registry, filled with given `data`
+     * @param {Object|Array} data Registry snippets. If array is given, adds items
+     * from array in order of precedence, registers global snippets otherwise
+     */
+    constructor(data) {
         this._registry = [];
+
+        if (Array.isArray(data)) {
+            data.forEach((snippets, level) => this.add(level, snippets));
+        } else if (typeof data === 'object') {
+            this.add(data);
+        }
     }
 
     /**
@@ -59,7 +47,7 @@ export class SnippetsRegistry {
     add(level, snippets) {
         if (level != null && typeof level === 'object') {
             snippets = level;
-            level = GLOBAL;
+            level = 0;
         }
 
         const store = new SnippetsStorage(snippets);

@@ -1,13 +1,15 @@
+'use strict';
+
 const assert = require('assert');
 require('babel-register');
-const main = require('../index');
-const createRegistry = main.default;
-const GLOBAL = main.GLOBAL;
-const USER = main.USER;
+const SnippetsRegistry = require('../index').default;
+
+const GLOBAL = 0;
+const USER = 1;
 
 describe('Snippets Registry', () => {
     it('create and fill', () => {
-        const registry = createRegistry([
+        const registry = new SnippetsRegistry([
             {a: 'b', c: 'd'},
             {'a': 'b2', c2: 'd2'}
         ]);
@@ -25,7 +27,7 @@ describe('Snippets Registry', () => {
         assert.equal(registry.resolve('a2'), undefined);
 
         // replace store
-        registry.add(1, {'a2': 'b2', d2: 'e2'});
+        registry.add(USER, {'a2': 'b2', d2: 'e2'});
         assert.equal(registry.resolve('a'), undefined);
         assert.equal(registry.resolve('a2').value, 'b2');
         assert.equal(registry.resolve('c2'), undefined);
@@ -38,7 +40,7 @@ describe('Snippets Registry', () => {
             return out;
         }, {});
 
-        const registry = createRegistry();
+        const registry = new SnippetsRegistry();
         const s1 = registry.add(USER, {'a': 'b2', c2: 'd2'});
         const s2 = registry.add({a: 'b', c: 'd'});
 
@@ -66,7 +68,7 @@ describe('Snippets Registry', () => {
     });
 
     it('all by type', () => {
-        const registry = createRegistry();
+        const registry = new SnippetsRegistry();
         registry.add(new Map()
             .set('a', 'b')
             .set('c', 'd')
