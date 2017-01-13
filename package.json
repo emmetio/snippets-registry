@@ -6,9 +6,7 @@
   "jsnext:main": "dist/snippets-registry.es.js",
   "scripts": {
     "test": "mocha",
-    "build": "npm run build:cjs && npm run build:es",
-    "build:cjs": "rollup -c -o dist/snippets-registry.cjs.js -f cjs ./index.js",
-    "build:es": "rollup -c -o dist/snippets-registry.es.js -f es ./index.js",
+    "build": "rollup -c",
     "prepublish": "npm run test && npm run build"
   },
   "repository": {
