@@ -35,10 +35,10 @@ describe('Snippets Registry', () => {
     });
 
     it('resolve', () => {
-        const toDict = map => Array.from(map.keys()).reduce((out, key) => {
-            out[key] = map.get(key).value;
-            return out;
-        }, {});
+		const toDict = allSnippets => allSnippets.reduce((out, snippet) => {
+			out[snippet.key] = snippet.value;
+			return out;
+		}, {});
 
         const registry = new SnippetsRegistry();
         const s1 = registry.add(USER, {'a': 'b2', c2: 'd2'});
@@ -74,7 +74,7 @@ describe('Snippets Registry', () => {
             .set('c', 'd')
             .set(/foo/, 'bar')
         );
-        const keys = opt => Array.from(registry.all(opt).keys());
+        const keys = opt => Array.from(registry.all(opt).map(snippet => snippet.key));
 
         assert.deepEqual(keys(), ['a', 'c', /foo/]);
         assert.deepEqual(keys({type: 'string'}), ['a', 'c']);

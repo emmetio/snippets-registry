@@ -85,11 +85,12 @@ export default class SnippetsRegistry {
     }
 
     /**
-     * Returns all snippets from current registry
+     * Returns all available snippets from current registry. Snippets with the
+     * same key are resolved by their storage priority.
      * @param {Object} options
      * @param {Object} options.type Return snippets only of given type: 'string'
      * or 'regexp'. Returns all snippets if not defined
-     * @return {Map}
+     * @return {Array}
      */
     all(options) {
         options = options || {};
@@ -106,7 +107,7 @@ export default class SnippetsRegistry {
             item.store.values().forEach(fillResult);
         });
 
-        return result;
+        return Array.from(result.values());
     }
 
     /**
