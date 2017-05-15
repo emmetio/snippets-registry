@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "JavaScript module for storing and retrieving Emmet snippets",
   "main": "dist/snippets-registry.cjs.js",
-  "jsnext:main": "dist/snippets-registry.es.js",
+  "module": "dist/snippets-registry.es.js",
   "scripts": {
     "test": "mocha",
     "build": "rollup -c",
