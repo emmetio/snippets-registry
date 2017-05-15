@@ -1,6 +1,6 @@
 {
   "name": "@emmetio/snippets-registry",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "JavaScript module for storing and retrieving Emmet snippets",
   "main": "dist/snippets-registry.cjs.js",
   "module": "dist/snippets-registry.es.js",
